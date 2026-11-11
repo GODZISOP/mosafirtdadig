@@ -8,7 +8,7 @@ import {
 } from 'lucide-react';
 import { categories, products } from './data/products';
 import { siteConfig } from './data/siteConfig';
-import logoImg from './images/as-global-trading-logo.svg';
+import logoImg from './images/mosafirtrading-logo.svg';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('home');
@@ -25,7 +25,7 @@ export default function App() {
   // Cart & Product Detail state
   const [cart, setCart] = useState(() => {
     try {
-      const saved = localStorage.getItem('ryp_cart') || localStorage.getItem('srl_cart');
+      const saved = localStorage.getItem('mtl_cart');
       return saved ? JSON.parse(saved) : [];
     } catch (e) {
       return [];
@@ -68,7 +68,7 @@ export default function App() {
   // Sync cart to localStorage
   useEffect(() => {
     try {
-      localStorage.setItem('ryp_cart', JSON.stringify(cart));
+      localStorage.setItem('mtl_cart', JSON.stringify(cart));
     } catch (e) {}
   }, [cart]);
 
@@ -477,7 +477,7 @@ export default function App() {
       {/* VIEW: HOME PAGE */}
       {activeTab === 'home' && (
         <main>
-          {/* HERO SECTION - LUXURY AS GLOBAL TRADING SHOWCASE */}
+          {/* HERO SECTION - LUXURY MOSAFIR TRADING SHOWCASE */}
           <section className="hero-section">
             <div className="hero-overlay"></div>
             <div className="hero-orb hero-orb-1" aria-hidden="true"></div>
@@ -486,7 +486,7 @@ export default function App() {
               <div className="hero-content">
                 <div className="hero-eyebrow-badge">
                   <Sparkles size={14} className="hero-sparkle-icon" />
-                  <span>{siteConfig.eyebrowStandard || 'THE AS GLOBAL TRADING STANDARD'}</span>
+                  <span>{siteConfig.eyebrowStandard || 'THE MOSAFIR TRADING STANDARD'}</span>
                 </div>
                 <h1 className="hero-title">
                   Quality Products & <span className="hero-title-highlight">Global Wholesale</span>
@@ -641,7 +641,7 @@ export default function App() {
                     <div className="card-rating-row">
                       <div className="card-stars">
                         {[...Array(5)].map((_, i) => (
-                          <Star key={i} size={13} fill="#10b981" color="#10b981" />
+                          <Star key={i} size={13} fill="var(--accent-gold)" color="var(--accent-gold)" />
                         ))}
                       </div>
                       <span className="card-rating-num">{prod.rating.toFixed(1)}</span>
@@ -680,7 +680,7 @@ export default function App() {
             </div>
           </section>
 
-          {/* THE AS GLOBAL TRADING LLC DISTINCTION EXPERIENCE (BENTO SHOWPIECE) */}
+          {/* THE MOSAFIR TRADING LLC DISTINCTION EXPERIENCE (BENTO SHOWPIECE) */}
           <section className="hf-experience-section">
             <div className="section-wrapper">
               <div className="section-header-center">
@@ -851,7 +851,7 @@ export default function App() {
             </div>
           </section>
 
-          {/* SECTION: CONTACT AS GLOBAL TRADING LLC (ON HOME PAGE) */}
+          {/* SECTION: CONTACT MOSAFIR TRADING LLC (ON HOME PAGE) */}
           <section id="contact-section" className="section-wrapper" style={{ padding: '60px 24px 70px' }}>
             <div style={{ maxWidth: '980px', margin: '0 auto' }}>
               <div className="section-header-center">
@@ -870,13 +870,15 @@ export default function App() {
                     <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.4rem', marginBottom: '20px', color: '#f5efe6' }}>Direct Coordinates</h3>
                     
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', fontSize: '0.95rem' }}>
-                      <div style={{ display: 'flex', gap: '14px', alignItems: 'flex-start' }}>
-                        <User size={20} color="var(--accent-teal)" style={{ marginTop: '2px', flexShrink: 0 }} />
-                        <div>
-                          <div style={{ color: '#b8aba0', fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Contact Person</div>
-                          <div style={{ color: '#fff', fontWeight: '600' }}>{siteConfig.ownerFullName}</div>
+                      {siteConfig.ownerFullName && (
+                        <div style={{ display: 'flex', gap: '14px', alignItems: 'flex-start' }}>
+                          <User size={20} color="var(--accent-teal)" style={{ marginTop: '2px', flexShrink: 0 }} />
+                          <div>
+                            <div style={{ color: '#b8aba0', fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Contact Person</div>
+                            <div style={{ color: '#fff', fontWeight: '600' }}>{siteConfig.ownerFullName}</div>
+                          </div>
                         </div>
-                      </div>
+                      )}
 
                       <div style={{ display: 'flex', gap: '14px', alignItems: 'flex-start' }}>
                         <Mail size={20} color="var(--accent-teal)" style={{ marginTop: '2px', flexShrink: 0 }} />
@@ -989,7 +991,7 @@ export default function App() {
                 Home
               </button>
               <span>/</span>
-              <span style={{ color: '#04201a', fontWeight: '600' }}>Shop All Products</span>
+              <span style={{ color: 'var(--primary-navy)', fontWeight: '600' }}>Shop All Products</span>
             </div>
             
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '16px' }}>
@@ -1128,7 +1130,7 @@ export default function App() {
                     <div className="card-rating-row">
                       <div className="card-stars">
                         {[...Array(5)].map((_, i) => (
-                          <Star key={i} size={13} fill="#10b981" color="#10b981" />
+                          <Star key={i} size={13} fill="var(--accent-gold)" color="var(--accent-gold)" />
                         ))}
                       </div>
                       <span className="card-rating-num">{prod.rating.toFixed(1)}</span>
@@ -1793,7 +1795,7 @@ export default function App() {
                   </div>
                   <div className="form-group">
                     <label className="form-label">Direct Phone / WhatsApp *</label>
-                    <input type="tel" required placeholder="{siteConfig.phonePrimary} or US phone" className="form-input" />
+                    <input type="tel" required placeholder={`${siteConfig.phonePrimary} or International`} className="form-input" />
                   </div>
                 </div>
                 <div className="form-group">
@@ -1840,13 +1842,15 @@ export default function App() {
                 <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.4rem', marginBottom: '16px', color: '#f8fafc' }}>Direct Coordinates</h3>
                 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', fontSize: '0.95rem' }}>
-                  <div style={{ display: 'flex', gap: '12px' }}>
-                    <User size={20} color="var(--accent-teal)" />
-                    <div>
-                      <div style={{ color: '#94a3b8', fontSize: '0.8rem', textTransform: 'uppercase' }}>Contact Person</div>
-                      <div style={{ color: '#fff', fontWeight: '600' }}>{siteConfig.ownerFullName}</div>
+                  {siteConfig.ownerFullName && (
+                    <div style={{ display: 'flex', gap: '12px' }}>
+                      <User size={20} color="var(--accent-teal)" />
+                      <div>
+                        <div style={{ color: '#94a3b8', fontSize: '0.8rem', textTransform: 'uppercase' }}>Contact Person</div>
+                        <div style={{ color: '#fff', fontWeight: '600' }}>{siteConfig.ownerFullName}</div>
+                      </div>
                     </div>
-                  </div>
+                  )}
 
                   <div style={{ display: 'flex', gap: '12px' }}>
                     <Mail size={20} color="var(--accent-teal)" />
@@ -1871,8 +1875,8 @@ export default function App() {
                     <Globe size={20} color="var(--accent-teal)" />
                     <div>
                       <div style={{ color: '#94a3b8', fontSize: '0.8rem', textTransform: 'uppercase' }}>Official Website</div>
-                      <a href={`https://${(siteConfig.website || 'asglobaltradingllc.com').replace(/^https?:\/\//, '')}`} target="_blank" rel="noreferrer" style={{ color: '#fff', textDecoration: 'none', fontWeight: '600' }}>
-                        {siteConfig.website || 'www.asglobaltradingllc.com'}
+                      <a href={`https://${(siteConfig.website || 'mosafirtradingllc.com').replace(/^https?:\/\//, '')}`} target="_blank" rel="noreferrer" style={{ color: '#fff', textDecoration: 'none', fontWeight: '600' }}>
+                        {siteConfig.website || 'www.mosafirtradingllc.com'}
                       </a>
                     </div>
                   </div>
@@ -1965,7 +1969,9 @@ export default function App() {
               Quality products online. Sourcing and distribution dedicated to supplying top tier merchandise with transparent global logistics.
             </p>
             <div style={{ marginTop: '16px', fontSize: '0.85rem', color: '#cbd5e1' }}>
-              <div><strong>Contact Person:</strong> {siteConfig.ownerFullName}</div>
+              {siteConfig.ownerFullName && (
+                <div><strong>Contact Person:</strong> {siteConfig.ownerFullName}</div>
+              )}
               <div><strong>Management:</strong> {siteConfig.companyName}</div>
               <div><strong>Address:</strong> {siteConfig.address.full}</div>
               <div><strong>Trade Desk Hotline:</strong> {siteConfig.phoneDirect} • {siteConfig.email}</div>
@@ -1985,9 +1991,11 @@ export default function App() {
           <div className="footer-col">
             <h4>Contacts</h4>
             <ul style={{ marginBottom: '20px' }}>
-              <li style={{ color: '#ffffff', fontWeight: '600' }}>
-                {siteConfig.ownerFullName}
-              </li>
+              {siteConfig.ownerFullName && (
+                <li style={{ color: '#ffffff', fontWeight: '600' }}>
+                  {siteConfig.ownerFullName}
+                </li>
+              )}
               <li>
                 <a href={`mailto:${siteConfig.email}`}>
                   {siteConfig.email}
@@ -2242,7 +2250,7 @@ export default function App() {
       {/* TOAST NOTIFICATION */}
       {toastMessage && (
         <div className="cart-toast">
-          <CheckCircle2 size={18} color="#10b981" />
+          <CheckCircle2 size={18} color="var(--accent-gold)" />
           <span>{toastMessage}</span>
         </div>
       )}
@@ -2310,7 +2318,7 @@ export default function App() {
                   </div>
                   <div className="form-group">
                     <label className="form-label">Phone / WhatsApp *</label>
-                    <input type="tel" required placeholder="{siteConfig.phoneDirect} or US line" className="form-input" />
+                    <input type="tel" required placeholder={`${siteConfig.phoneDirect} or International`} className="form-input" />
                   </div>
                   <div className="form-group">
                     <label className="form-label">Categories of Interest</label>
